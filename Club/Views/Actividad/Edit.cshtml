@@ -1,0 +1,343 @@
+﻿@model Club.Models.ActividadVM
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-horizontal">
+    <h4>ACTIVIDAD</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID_ACTIVIDAD)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_PROFESOR, "Profesor", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ID_PROFESOR", new SelectList(ViewBag.Profesor, "ID_PROFESOR", "NOMBRE"), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ID_PROFESOR, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DESCRIPCION, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DESCRIPCION, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_ACTIVIDAD_TIPO, "Tipo de actividad", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ID_ACTIVIDAD_TIPO", new SelectList(ViewBag.ActividadTipo, "ID_ACTIVIDAD_TIPO", "DESCRIPCION"), htmlAttributes: new { @class = "form-control", @onchange = "FillLocation(this.value)" })
+            @Html.ValidationMessageFor(model => model.ID_ACTIVIDAD_TIPO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FECHA_INICIO, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FECHA_INICIO, new { htmlAttributes = new { @class = "fechaInicio" } })
+            @Html.ValidationMessageFor(model => model.FECHA_INICIO, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FECHA_FIN, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FECHA_FIN, new { htmlAttributes = new { @class = "fechaFin" } })
+            @Html.ValidationMessageFor(model => model.FECHA_FIN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ESTADO, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.ESTADO)
+                @Html.ValidationMessageFor(model => model.ESTADO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+
+<div class="container" style="margin-top:3%">
+    <a href="#" class="btn btn-info" name="agregar" id="agregar" onclick="AddNewHorario(0)">Agregar Horario</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id Locacion</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Dia</th>
+
+            </tr>
+        </thead>
+        <tbody id="SetHorarioList">
+            <tr id="LoadingStatus" style="color:red;"></tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+@*Create A Popup Modal With Registration Form For Add Or Edit Student Record*@
+
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitHorario">
+                        @Html.HiddenFor(m => m.horario.ID_HORARIO, new { @id = "ID_HORARIO" })
+                        @Html.HiddenFor(model => model.ID_ACTIVIDAD)
+                        @Html.HiddenFor(model => model.FECHA_INICIO)
+                        @Html.HiddenFor(model => model.FECHA_FIN)
+                        @Html.HiddenFor(model => model.ID_PROFESOR)
+                        @Html.LabelFor(model => model.horario.ID_LOCACION, "Locacion", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.DropDownListFor(model => model.horario.ID_LOCACION, new SelectList(ViewBag.Locacion, "ID_LOCACION", "DESCRIPCION"), htmlAttributes: new { @class = "form-control", @id = "Locacion" })
+                            @Html.ValidationMessageFor(model => model.horario.ID_LOCACION, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.horario.HORA_INICIO, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.horario.HORA_INICIO, new { htmlAttributes = new { @class = "form-control timePicker" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.horario.HORA_FIN, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.horario.HORA_FIN, new { htmlAttributes = new { @class = "form-control timePicker" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.horario.DIA)
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(model => model.horario.DIA, new SelectList(Enum.GetValues(typeof(Club.Models.Enumeradores.DIAS))), "Elija un dia")
+                                @Html.ValidationMessageFor(model => model.horario.DIA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <a href="#" class="btn btn-block btn-danger" id="GuardarHorario">Save</a>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*modal confirmar*@
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Delete Student Record</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Are You Sure? You Want To Delete This Record.</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancel</a>
+                <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+
+
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+
+    <script src="~/Scripts/tpicker.js"></script>
+    <script>
+
+        function AddNewHorario(StudentId) {
+            //$("#form")[0].reset();
+            //$("#StuId").val(0);
+            //$("#DropDwn option:selected").text("--Select Dept--");
+            //$("#ModalTitle").html("Add New Student");
+            if (@Model.ID_ACTIVIDAD) {
+                $("#MyModal").modal();
+            }
+
+        }
+
+        $("#GuardarHorario").click(function () {
+            var data = $("#SubmitHorario").serialize();
+            $.ajax({
+                type: "Post",
+                url: "/Actividad/AddHorario",
+                data: data,
+                success: function (result) {
+                    alert("Success!..");
+                    window.location.href = "/Actividad/Edit/"+@Model.ID_ACTIVIDAD;
+                    $("#MyModal").modal("hide");
+                }
+            })
+        })
+
+
+        //Timepicker
+
+
+        //$(function () {
+        //    $(".fechaInicio").datepicker({
+        //        dateFormat: "dd/MM/yy",
+        //        changeMonth: true,
+        //        changeYear: true
+        //    });
+        //});
+
+
+        //$(function () {
+        //    $(".fechaFin").datepicker({
+        //        dateFormat: "dd/MM/yy",
+        //        changeMonth: true,
+        //        changeYear: true
+        //    });
+        //});
+
+
+        $(function () {
+            $('.timePicker').datetimepicker({
+                format: 'LT'
+            });
+        });
+        var cantHorario = 0;
+        $("#LoadingStatus").html("Loading....");
+        $.get("/Actividad/GetHorarioList?idActividad=" +@Model.ID_ACTIVIDAD, null, DataBind);
+        
+        function DataBind(HorarioList)
+        {
+            cantHorario = HorarioList.length;
+            var SetData = $("#SetHorarioList");
+            for (var i = 0; i < HorarioList.length; i++)
+            {
+                var HoraInicio = new Date(parseInt(HorarioList[i].HORA_INICIO.substr(6)));
+                var HoraFin = new Date(parseInt(HorarioList[i].HORA_FIN.substr(6)));
+                var Data = "<tr class'row_'" + HorarioList[i].ID_HORARIO + "'>" +
+                    "<td>" + HorarioList[i].ID_LOCACION + "</td>" +
+                    "<td>" + HoraInicio.getHours() + ":" + HoraInicio.getMinutes()+ "</td>" +
+                    "<td>" + HoraFin.getHours() + ":" + HoraFin.getMinutes() + "</td>" +
+                    "<td>" + HorarioList[i].DIA + "</td>" +
+                    "<td>" + "<a href='#' class='btn btn-info' onclick='DeleteHorario(" + HorarioList[i].ID_HORARIO + ")'><span class='glyphicon glyphicon-trash' >Delete</span></a>" + "</td>" +
+                    "</tr>";
+                SetData.append(Data);
+                $("#LoadingStatus").html("");
+            }
+        }
+
+
+
+        var DeleteHorario = function (ID_HORARIO) {
+            $("#ID_HORARIO").val(ID_HORARIO);
+            $("#DeleteConfirmation").modal("show");
+        }
+       
+        var ConfirmDelete = function () {
+            var ID_HORARIO = $("#ID_HORARIO").val();
+            $.ajax({
+                type: "POST",
+                url: "/Actividad/DeleteHorario?ID_HORARIO=" + ID_HORARIO,
+                success: function (result) {
+                    $("#DeleteConfirmation").modal("hide");
+                    $(".row_" + ID_HORARIO).remove();
+                    $("#SetHorarioList").empty()
+                    $.get("/Actividad/GetHorarioList?idActividad="+@Model.ID_ACTIVIDAD,null, DataBind);
+                    DataBind(HorarioList);
+                }
+            })
+        }
+
+
+
+        
+        $(document).ready(function () {
+            val2 = @Model.ID_ACTIVIDAD_TIPO;            
+            
+            if (cantHorario > 0) {
+                $(FECHA_INICIO).attr("disabled", true);
+                $(FECHA_FIN).attr("disabled", true);
+                $(ID_ACTIVIDAD_TIPO).attr("disabled", true);
+            }
+            
+            FillLocation(val2);
+
+            
+        });
+        function FillLocation(val)
+        {
+            $("#Locacion").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getLocacion")',
+                dataType: 'json',
+                data: {
+                    idTipo: val,
+                },
+                success: function (LocacionL) {
+                    $.each(LocacionL, function (i, locacion) {
+
+                        $("#Locacion").append('<option value="' + locacion.Value + '">'+locacion.Text + '</option > ');
+                    });
+                },
+                error: function (ex) {
+                    alert('Error al cargar los Puntos. ' + ex);
+                }
+            });
+
+        }
+
+
+
+
+    </script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

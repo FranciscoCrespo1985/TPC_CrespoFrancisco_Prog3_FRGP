@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CLUBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ACTIVIDAD">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_PROFESOR" Type="bigint" Nullable="false" />
+    <Property Name="ID_ACTIVIDAD_TIPO" Type="int" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="ACTIVIDAD_TIPO">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD_TIPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HORARIO">
+    <Key>
+      <PropertyRef Name="ID_HORARIO" />
+    </Key>
+    <Property Name="ID_HORARIO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_ACTIVIDAD" Type="int" Nullable="false" />
+    <Property Name="ID_LOCACION" Type="int" Nullable="false" />
+    <Property Name="HORA_INICIO" Type="datetime" Nullable="false" />
+    <Property Name="HORA_FIN" Type="datetime" Nullable="false" />
+    <Property Name="DIA" Type="smallint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CLUB.dbo.INSCRIPCION_SOCIO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="INSCRIPCION_SOCIO">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INSCRIPCION" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="ID_SOCIO" Type="nvarchar" MaxLength="128" />
+    <Property Name="ID_ACTIVIDAD" Type="int" Nullable="false" />
+    <Property Name="FECHA_INSCRIPCION" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_BAJA" Type="datetime" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LOCACION">
+    <Key>
+      <PropertyRef Name="ID_LOCACION" />
+    </Key>
+    <Property Name="ID_LOCACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="ID_TIPO_ACTIVIDAD" Type="int" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PROFESOR">
+    <Key>
+      <PropertyRef Name="ID_PROFESOR" />
+    </Key>
+    <Property Name="ID_PROFESOR" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DNI" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="70" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SOCIO">
+    <Key>
+      <PropertyRef Name="ID_SOCIO" />
+    </Key>
+    <Property Name="ID_SOCIO" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="DNI" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CLUB.dbo.SV_ACTIVIDAD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SV_ACTIVIDAD">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INICIO" />
+      <PropertyRef Name="FECHA_FIN" />
+      <PropertyRef Name="ESTADO" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="NOMBRE COMPLETO" />
+      <PropertyRef Name="ESTADO_PROFESOR" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="int" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+    <Property Name="ACTIVIDAD DESCRIPCION" Type="varchar" MaxLength="128" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NOMBRE COMPLETO" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="ESTADO_PROFESOR" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CLUB.dbo.SV_USER_INSCRIPCION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SV_USER_INSCRIPCION">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INICIO" />
+      <PropertyRef Name="FECHA_FIN" />
+      <PropertyRef Name="ESTADO_ACTIVIDAD" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="NOMBRE COMPLETO" />
+      <PropertyRef Name="ESTADO" />
+      <PropertyRef Name="ESTADO_INSCRIPCION" />
+      <PropertyRef Name="ESTADO_SOCIO" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="int" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
+    <Property Name="ESTADO_ACTIVIDAD" Type="bit" Nullable="false" />
+    <Property Name="ACTIVIDAD DESCRIPCION" Type="varchar" MaxLength="128" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NOMBRE COMPLETO" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
+    <Property Name="ID_SOCIO" Type="nvarchar" MaxLength="128" />
+    <Property Name="ESTADO_INSCRIPCION" Type="bit" Nullable="false" />
+    <Property Name="ESTADO_SOCIO" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ACTIVIDAD__ID_AC__300424B4">
+    <End Role="ACTIVIDAD_TIPO" Type="Self.ACTIVIDAD_TIPO" Multiplicity="1" />
+    <End Role="ACTIVIDAD" Type="Self.ACTIVIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD_TIPO">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Principal>
+      <Dependent Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ACTIVIDAD__ID_PR__2F10007B">
+    <End Role="PROFESOR" Type="Self.PROFESOR" Multiplicity="1" />
+    <End Role="ACTIVIDAD" Type="Self.ACTIVIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROFESOR">
+        <PropertyRef Name="ID_PROFESOR" />
+      </Principal>
+      <Dependent Role="ACTIVIDAD">
+        <PropertyRef Name="ID_PROFESOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HORARIO__ID_ACTI__33D4B598">
+    <End Role="ACTIVIDAD" Type="Self.ACTIVIDAD" Multiplicity="1" />
+    <End Role="HORARIO" Type="Self.HORARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Principal>
+      <Dependent Role="HORARIO">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HORARIO__ID_LOCA__34C8D9D1">
+    <End Role="LOCACION" Type="Self.LOCACION" Multiplicity="1" />
+    <End Role="HORARIO" Type="Self.HORARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCACION">
+        <PropertyRef Name="ID_LOCACION" />
+      </Principal>
+      <Dependent Role="HORARIO">
+        <PropertyRef Name="ID_LOCACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INSCRIPCI__ID_AC__25518C17">
+    <End Role="ACTIVIDAD" Type="Self.ACTIVIDAD" Multiplicity="1" />
+    <End Role="INSCRIPCION_SOCIO" Type="Self.INSCRIPCION_SOCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Principal>
+      <Dependent Role="INSCRIPCION_SOCIO">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INSCRIPCI__ID_SO__245D67DE">
+    <End Role="SOCIO" Type="Self.SOCIO" Multiplicity="0..1" />
+    <End Role="INSCRIPCION_SOCIO" Type="Self.INSCRIPCION_SOCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Principal>
+      <Dependent Role="INSCRIPCION_SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LOCACION__ID_TIP__286302EC">
+    <End Role="ACTIVIDAD_TIPO" Type="Self.ACTIVIDAD_TIPO" Multiplicity="1" />
+    <End Role="LOCACION" Type="Self.LOCACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD_TIPO">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Principal>
+      <Dependent Role="LOCACION">
+        <PropertyRef Name="ID_TIPO_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SOCIO__ID_SOCIO__2180FB33">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="SOCIO" Type="Self.SOCIO" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_USER_INSCRIPCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_SOCIO" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_INSCRIPCION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_SOCIO" Type="nvarchar" Mode="In" />
+    <Parameter Name="ID_ACTIVIDAD" Type="int" Mode="In" />
+    <Parameter Name="FECHA_INSCRIPCION" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SP_INSCRIPCION_BAJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID_SOCIO" Type="nvarchar" Mode="In" />
+    <Parameter Name="ID_ACTIVIDAD" Type="int" Mode="In" />
+    <Parameter Name="FECHA_INSCRIPCION" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="CLUBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ACTIVIDAD" EntityType="Self.ACTIVIDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ACTIVIDAD_TIPO" EntityType="Self.ACTIVIDAD_TIPO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HORARIO" EntityType="Self.HORARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOCACION" EntityType="Self.LOCACION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROFESOR" EntityType="Self.PROFESOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOCIO" EntityType="Self.SOCIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="INSCRIPCION_SOCIO" EntityType="Self.INSCRIPCION_SOCIO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [INSCRIPCION_SOCIO].[ID_SOCIO] AS [ID_SOCIO], 
+    [INSCRIPCION_SOCIO].[ID_ACTIVIDAD] AS [ID_ACTIVIDAD], 
+    [INSCRIPCION_SOCIO].[FECHA_INSCRIPCION] AS [FECHA_INSCRIPCION], 
+    [INSCRIPCION_SOCIO].[FECHA_BAJA] AS [FECHA_BAJA], 
+    [INSCRIPCION_SOCIO].[ESTADO] AS [ESTADO]
+    FROM [dbo].[INSCRIPCION_SOCIO] AS [INSCRIPCION_SOCIO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SV_ACTIVIDAD" EntityType="Self.SV_ACTIVIDAD" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SV_ACTIVIDAD].[ID_ACTIVIDAD] AS [ID_ACTIVIDAD], 
+    [SV_ACTIVIDAD].[FECHA_INICIO] AS [FECHA_INICIO], 
+    [SV_ACTIVIDAD].[FECHA_FIN] AS [FECHA_FIN], 
+    [SV_ACTIVIDAD].[ESTADO] AS [ESTADO], 
+    [SV_ACTIVIDAD].[ACTIVIDAD DESCRIPCION] AS [ACTIVIDAD DESCRIPCION], 
+    [SV_ACTIVIDAD].[DESCRIPCION] AS [DESCRIPCION], 
+    [SV_ACTIVIDAD].[NOMBRE COMPLETO] AS [NOMBRE COMPLETO], 
+    [SV_ACTIVIDAD].[ESTADO_PROFESOR] AS [ESTADO_PROFESOR]
+    FROM [dbo].[SV_ACTIVIDAD] AS [SV_ACTIVIDAD]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SV_USER_INSCRIPCION" EntityType="Self.SV_USER_INSCRIPCION" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SV_USER_INSCRIPCION].[ID_ACTIVIDAD] AS [ID_ACTIVIDAD], 
+    [SV_USER_INSCRIPCION].[FECHA_INICIO] AS [FECHA_INICIO], 
+    [SV_USER_INSCRIPCION].[FECHA_FIN] AS [FECHA_FIN], 
+    [SV_USER_INSCRIPCION].[ESTADO_ACTIVIDAD] AS [ESTADO_ACTIVIDAD], 
+    [SV_USER_INSCRIPCION].[ACTIVIDAD DESCRIPCION] AS [ACTIVIDAD DESCRIPCION], 
+    [SV_USER_INSCRIPCION].[DESCRIPCION] AS [DESCRIPCION], 
+    [SV_USER_INSCRIPCION].[NOMBRE COMPLETO] AS [NOMBRE COMPLETO], 
+    [SV_USER_INSCRIPCION].[ESTADO] AS [ESTADO], 
+    [SV_USER_INSCRIPCION].[ID_SOCIO] AS [ID_SOCIO], 
+    [SV_USER_INSCRIPCION].[ESTADO_INSCRIPCION] AS [ESTADO_INSCRIPCION], 
+    [SV_USER_INSCRIPCION].[ESTADO_SOCIO] AS [ESTADO_SOCIO]
+    FROM [dbo].[SV_USER_INSCRIPCION] AS [SV_USER_INSCRIPCION]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__ACTIVIDAD__ID_AC__300424B4" Association="Self.FK__ACTIVIDAD__ID_AC__300424B4">
+      <End Role="ACTIVIDAD_TIPO" EntitySet="ACTIVIDAD_TIPO" />
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ACTIVIDAD__ID_PR__2F10007B" Association="Self.FK__ACTIVIDAD__ID_PR__2F10007B">
+      <End Role="PROFESOR" EntitySet="PROFESOR" />
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HORARIO__ID_ACTI__33D4B598" Association="Self.FK__HORARIO__ID_ACTI__33D4B598">
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+      <End Role="HORARIO" EntitySet="HORARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HORARIO__ID_LOCA__34C8D9D1" Association="Self.FK__HORARIO__ID_LOCA__34C8D9D1">
+      <End Role="LOCACION" EntitySet="LOCACION" />
+      <End Role="HORARIO" EntitySet="HORARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INSCRIPCI__ID_AC__25518C17" Association="Self.FK__INSCRIPCI__ID_AC__25518C17">
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+      <End Role="INSCRIPCION_SOCIO" EntitySet="INSCRIPCION_SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INSCRIPCI__ID_SO__245D67DE" Association="Self.FK__INSCRIPCI__ID_SO__245D67DE">
+      <End Role="SOCIO" EntitySet="SOCIO" />
+      <End Role="INSCRIPCION_SOCIO" EntitySet="INSCRIPCION_SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LOCACION__ID_TIP__286302EC" Association="Self.FK__LOCACION__ID_TIP__286302EC">
+      <End Role="ACTIVIDAD_TIPO" EntitySet="ACTIVIDAD_TIPO" />
+      <End Role="LOCACION" EntitySet="LOCACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SOCIO__ID_SOCIO__2180FB33" Association="Self.FK__SOCIO__ID_SOCIO__2180FB33">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SOCIO" EntitySet="SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

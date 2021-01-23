@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CLUBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbClub" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CLUBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CLUBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="C__MigrationHistory" EntityType="CLUBModel.C__MigrationHistory" />
+    <EntitySet Name="ACTIVIDAD" EntityType="CLUBModel.ACTIVIDAD" />
+    <EntitySet Name="ACTIVIDAD_TIPO" EntityType="CLUBModel.ACTIVIDAD_TIPO" />
+    <EntitySet Name="AspNetRoles" EntityType="CLUBModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="CLUBModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="CLUBModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="CLUBModel.AspNetUsers" />
+    <EntitySet Name="HORARIO" EntityType="CLUBModel.HORARIO" />
+    <EntitySet Name="LOCACION" EntityType="CLUBModel.LOCACION" />
+    <EntitySet Name="PROFESOR" EntityType="CLUBModel.PROFESOR" />
+    <EntitySet Name="SOCIO" EntityType="CLUBModel.SOCIO" />
+    <EntitySet Name="sysdiagrams" EntityType="CLUBModel.sysdiagrams" />
+    <EntitySet Name="INSCRIPCION_SOCIO" EntityType="CLUBModel.INSCRIPCION_SOCIO" />
+    <AssociationSet Name="FK__ACTIVIDAD__ID_AC__300424B4" Association="CLUBModel.FK__ACTIVIDAD__ID_AC__300424B4">
+      <End Role="ACTIVIDAD_TIPO" EntitySet="ACTIVIDAD_TIPO" />
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ACTIVIDAD__ID_PR__2F10007B" Association="CLUBModel.FK__ACTIVIDAD__ID_PR__2F10007B">
+      <End Role="PROFESOR" EntitySet="PROFESOR" />
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HORARIO__ID_ACTI__33D4B598" Association="CLUBModel.FK__HORARIO__ID_ACTI__33D4B598">
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+      <End Role="HORARIO" EntitySet="HORARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INSCRIPCI__ID_AC__25518C17" Association="CLUBModel.FK__INSCRIPCI__ID_AC__25518C17">
+      <End Role="ACTIVIDAD" EntitySet="ACTIVIDAD" />
+      <End Role="INSCRIPCION_SOCIO" EntitySet="INSCRIPCION_SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LOCACION__ID_TIP__286302EC" Association="CLUBModel.FK__LOCACION__ID_TIP__286302EC">
+      <End Role="ACTIVIDAD_TIPO" EntitySet="ACTIVIDAD_TIPO" />
+      <End Role="LOCACION" EntitySet="LOCACION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CLUBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CLUBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SOCIO__ID_SOCIO__2180FB33" Association="CLUBModel.FK__SOCIO__ID_SOCIO__2180FB33">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="SOCIO" EntitySet="SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HORARIO__ID_LOCA__34C8D9D1" Association="CLUBModel.FK__HORARIO__ID_LOCA__34C8D9D1">
+      <End Role="LOCACION" EntitySet="LOCACION" />
+      <End Role="HORARIO" EntitySet="HORARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__INSCRIPCI__ID_SO__245D67DE" Association="CLUBModel.FK__INSCRIPCI__ID_SO__245D67DE">
+      <End Role="SOCIO" EntitySet="SOCIO" />
+      <End Role="INSCRIPCION_SOCIO" EntitySet="INSCRIPCION_SOCIO" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="CLUBModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="SV_ACTIVIDAD" EntityType="CLUBModel.SV_ACTIVIDAD" />
+    <FunctionImport Name="SP_GET_USER_INSCRIPCION" ReturnType="Collection(CLUBModel.SP_GET_USER_INSCRIPCION_Result)">
+      <Parameter Name="ID_SOCIO" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_INSCRIPCION">
+      <Parameter Name="ID_SOCIO" Mode="In" Type="String" />
+      <Parameter Name="ID_ACTIVIDAD" Mode="In" Type="Int32" />
+      <Parameter Name="FECHA_INSCRIPCION" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="SV_USER_INSCRIPCION" EntityType="CLUBModel.SV_USER_INSCRIPCION" />
+    <FunctionImport Name="SP_INSCRIPCION_BAJA">
+      <Parameter Name="ID_SOCIO" Mode="In" Type="String" />
+      <Parameter Name="ID_ACTIVIDAD" Mode="In" Type="Int32" />
+      <Parameter Name="FECHA_INSCRIPCION" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ACTIVIDAD">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_PROFESOR" Type="Int64" Nullable="false" />
+    <Property Name="ID_ACTIVIDAD_TIPO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ACTIVIDAD_TIPO" Relationship="CLUBModel.FK__ACTIVIDAD__ID_AC__300424B4" FromRole="ACTIVIDAD" ToRole="ACTIVIDAD_TIPO" />
+    <NavigationProperty Name="PROFESOR" Relationship="CLUBModel.FK__ACTIVIDAD__ID_PR__2F10007B" FromRole="ACTIVIDAD" ToRole="PROFESOR" />
+    <NavigationProperty Name="HORARIO" Relationship="CLUBModel.FK__HORARIO__ID_ACTI__33D4B598" FromRole="ACTIVIDAD" ToRole="HORARIO" />
+    <NavigationProperty Name="INSCRIPCION_SOCIO" Relationship="CLUBModel.FK__INSCRIPCI__ID_AC__25518C17" FromRole="ACTIVIDAD" ToRole="INSCRIPCION_SOCIO" />
+    <Property Name="descripcion" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ACTIVIDAD_TIPO">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD_TIPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ACTIVIDAD" Relationship="CLUBModel.FK__ACTIVIDAD__ID_AC__300424B4" FromRole="ACTIVIDAD_TIPO" ToRole="ACTIVIDAD" />
+    <NavigationProperty Name="LOCACION" Relationship="CLUBModel.FK__LOCACION__ID_TIP__286302EC" FromRole="ACTIVIDAD_TIPO" ToRole="LOCACION" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="CLUBModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="CLUBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="CLUBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="CLUBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="CLUBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="SOCIO" Relationship="CLUBModel.FK__SOCIO__ID_SOCIO__2180FB33" FromRole="AspNetUsers" ToRole="SOCIO" />
+    <NavigationProperty Name="AspNetRoles" Relationship="CLUBModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="HORARIO">
+    <Key>
+      <PropertyRef Name="ID_HORARIO" />
+    </Key>
+    <Property Name="ID_HORARIO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_ACTIVIDAD" Type="Int32" Nullable="false" />
+    <Property Name="ID_LOCACION" Type="Int32" Nullable="false" />
+    <Property Name="HORA_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="HORA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DIA" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="ACTIVIDAD" Relationship="CLUBModel.FK__HORARIO__ID_ACTI__33D4B598" FromRole="HORARIO" ToRole="ACTIVIDAD" />
+    <NavigationProperty Name="LOCACION" Relationship="CLUBModel.FK__HORARIO__ID_LOCA__34C8D9D1" FromRole="HORARIO" ToRole="LOCACION" />
+  </EntityType>
+  <EntityType Name="LOCACION">
+    <Key>
+      <PropertyRef Name="ID_LOCACION" />
+    </Key>
+    <Property Name="ID_LOCACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="ID_TIPO_ACTIVIDAD" Type="Int32" Nullable="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ACTIVIDAD_TIPO" Relationship="CLUBModel.FK__LOCACION__ID_TIP__286302EC" FromRole="LOCACION" ToRole="ACTIVIDAD_TIPO" />
+    <NavigationProperty Name="HORARIO" Relationship="CLUBModel.FK__HORARIO__ID_LOCA__34C8D9D1" FromRole="LOCACION" ToRole="HORARIO" />
+  </EntityType>
+  <EntityType Name="PROFESOR">
+    <Key>
+      <PropertyRef Name="ID_PROFESOR" />
+    </Key>
+    <Property Name="ID_PROFESOR" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ACTIVIDAD" Relationship="CLUBModel.FK__ACTIVIDAD__ID_PR__2F10007B" FromRole="PROFESOR" ToRole="ACTIVIDAD" />
+  </EntityType>
+  <EntityType Name="SOCIO">
+    <Key>
+      <PropertyRef Name="ID_SOCIO" />
+    </Key>
+    <Property Name="ID_SOCIO" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DNI" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="CLUBModel.FK__SOCIO__ID_SOCIO__2180FB33" FromRole="SOCIO" ToRole="AspNetUsers" />
+    <NavigationProperty Name="INSCRIPCION_SOCIO" Relationship="CLUBModel.FK__INSCRIPCI__ID_SO__245D67DE" FromRole="SOCIO" ToRole="INSCRIPCION_SOCIO" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="INSCRIPCION_SOCIO">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INSCRIPCION" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="ID_SOCIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ID_ACTIVIDAD" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_INSCRIPCION" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_BAJA" Type="DateTime" Precision="3" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ACTIVIDAD" Relationship="CLUBModel.FK__INSCRIPCI__ID_AC__25518C17" FromRole="INSCRIPCION_SOCIO" ToRole="ACTIVIDAD" />
+    <NavigationProperty Name="SOCIO" Relationship="CLUBModel.FK__INSCRIPCI__ID_SO__245D67DE" FromRole="INSCRIPCION_SOCIO" ToRole="SOCIO" />
+  </EntityType>
+  <Association Name="FK__ACTIVIDAD__ID_AC__300424B4">
+    <End Type="CLUBModel.ACTIVIDAD_TIPO" Role="ACTIVIDAD_TIPO" Multiplicity="1" />
+    <End Type="CLUBModel.ACTIVIDAD" Role="ACTIVIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD_TIPO">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Principal>
+      <Dependent Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ACTIVIDAD__ID_PR__2F10007B">
+    <End Type="CLUBModel.PROFESOR" Role="PROFESOR" Multiplicity="1" />
+    <End Type="CLUBModel.ACTIVIDAD" Role="ACTIVIDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROFESOR">
+        <PropertyRef Name="ID_PROFESOR" />
+      </Principal>
+      <Dependent Role="ACTIVIDAD">
+        <PropertyRef Name="ID_PROFESOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HORARIO__ID_ACTI__33D4B598">
+    <End Type="CLUBModel.ACTIVIDAD" Role="ACTIVIDAD" Multiplicity="1" />
+    <End Type="CLUBModel.HORARIO" Role="HORARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Principal>
+      <Dependent Role="HORARIO">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INSCRIPCI__ID_AC__25518C17">
+    <End Type="CLUBModel.ACTIVIDAD" Role="ACTIVIDAD" Multiplicity="1" />
+    <End Type="CLUBModel.INSCRIPCION_SOCIO" Role="INSCRIPCION_SOCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Principal>
+      <Dependent Role="INSCRIPCION_SOCIO">
+        <PropertyRef Name="ID_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LOCACION__ID_TIP__286302EC">
+    <End Type="CLUBModel.ACTIVIDAD_TIPO" Role="ACTIVIDAD_TIPO" Multiplicity="1" />
+    <End Type="CLUBModel.LOCACION" Role="LOCACION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACTIVIDAD_TIPO">
+        <PropertyRef Name="ID_ACTIVIDAD_TIPO" />
+      </Principal>
+      <Dependent Role="LOCACION">
+        <PropertyRef Name="ID_TIPO_ACTIVIDAD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="CLUBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="CLUBModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="CLUBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="CLUBModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SOCIO__ID_SOCIO__2180FB33">
+    <End Type="CLUBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="CLUBModel.SOCIO" Role="SOCIO" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HORARIO__ID_LOCA__34C8D9D1">
+    <End Type="CLUBModel.LOCACION" Role="LOCACION" Multiplicity="1" />
+    <End Type="CLUBModel.HORARIO" Role="HORARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOCACION">
+        <PropertyRef Name="ID_LOCACION" />
+      </Principal>
+      <Dependent Role="HORARIO">
+        <PropertyRef Name="ID_LOCACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__INSCRIPCI__ID_SO__245D67DE">
+    <End Type="CLUBModel.SOCIO" Role="SOCIO" Multiplicity="0..1" />
+    <End Type="CLUBModel.INSCRIPCION_SOCIO" Role="INSCRIPCION_SOCIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Principal>
+      <Dependent Role="INSCRIPCION_SOCIO">
+        <PropertyRef Name="ID_SOCIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="CLUBModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="CLUBModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SV_ACTIVIDAD">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INICIO" />
+      <PropertyRef Name="FECHA_FIN" />
+      <PropertyRef Name="ESTADO" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="NOMBRE_COMPLETO" />
+      <PropertyRef Name="ESTADO_PROFESOR" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVIDAD_DESCRIPCION" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_COMPLETO" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO_PROFESOR" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="SP_GET_USER_INSCRIPCION_Result">
+    <Property Type="Int32" Name="ID_ACTIVIDAD" Nullable="false" />
+    <Property Type="DateTime" Name="FECHA_INICIO" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="FECHA_FIN" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="ESTADO" Nullable="false" />
+    <Property Type="String" Name="ACTIVIDAD_DESCRIPCION" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="DESCRIPCION" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="NOMBRE_COMPLETO" Nullable="false" MaxLength="512" />
+    <Property Type="String" Name="ID_SOCIO" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="ID_ACTIVIDAD1" Nullable="false" />
+    <Property Type="DateTime" Name="FECHA_INSCRIPCION" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="FECHA_BAJA" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="ESTADO1" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="SV_USER_INSCRIPCION">
+    <Key>
+      <PropertyRef Name="ID_ACTIVIDAD" />
+      <PropertyRef Name="FECHA_INICIO" />
+      <PropertyRef Name="FECHA_FIN" />
+      <PropertyRef Name="ESTADO_ACTIVIDAD" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="NOMBRE_COMPLETO" />
+      <PropertyRef Name="ESTADO_INSCRIPCION" />
+      <PropertyRef Name="ESTADO_SOCIO" />
+      <PropertyRef Name="ESTADO" />
+    </Key>
+    <Property Name="ID_ACTIVIDAD" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ESTADO_ACTIVIDAD" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVIDAD_DESCRIPCION" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_COMPLETO" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="ID_SOCIO" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ESTADO_INSCRIPCION" Type="Boolean" Nullable="false" />
+    <Property Name="ESTADO_SOCIO" Type="Boolean" Nullable="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

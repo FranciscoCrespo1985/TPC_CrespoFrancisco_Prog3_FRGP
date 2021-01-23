@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "horario";
+}
+
+<h2>horario</h2>
+
+
+
+@model Club.Models.HorarioVM
+
+@using (Html.BeginCollectionItem("Horarios"))
+{
+    <tr>
+        <td>
+            @Html.HiddenFor(m => m.isDeleted, new { data_is_deleted = "false" })
+        <td>
+            @Html.HiddenFor(m => m.ID_HORARIO)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.HORA_INICIO)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.HORA_FIN)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ID_LOCACION)
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ID_ACTIVIDAD)
+        </td>       
+
+        <td>
+            <span class="glyphicon glyphicon-trash action-icon" data-action="removeItem"></span>
+        </td>
+
+
+    </tr>
+}

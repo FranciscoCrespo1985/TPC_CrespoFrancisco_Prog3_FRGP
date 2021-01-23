@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CLUBModelStoreContainer" CdmEntityContainer="dbClub">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CLUBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CLUBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CLUBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CLUBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CLUBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CLUBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CLUBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CLUBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CLUBModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="CLUBModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ACTIVIDAD">
+      <EntityTypeMapping TypeName="CLUBModel.ACTIVIDAD">
+        <MappingFragment StoreEntitySet="ACTIVIDAD">
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="ID_ACTIVIDAD_TIPO" ColumnName="ID_ACTIVIDAD_TIPO" />
+          <ScalarProperty Name="ID_PROFESOR" ColumnName="ID_PROFESOR" />
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ACTIVIDAD_TIPO">
+      <EntityTypeMapping TypeName="CLUBModel.ACTIVIDAD_TIPO">
+        <MappingFragment StoreEntitySet="ACTIVIDAD_TIPO">
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID_ACTIVIDAD_TIPO" ColumnName="ID_ACTIVIDAD_TIPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="CLUBModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="CLUBModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="CLUBModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="CLUBModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HORARIO">
+      <EntityTypeMapping TypeName="CLUBModel.HORARIO">
+        <MappingFragment StoreEntitySet="HORARIO">
+          <ScalarProperty Name="DIA" ColumnName="DIA" />
+          <ScalarProperty Name="HORA_FIN" ColumnName="HORA_FIN" />
+          <ScalarProperty Name="HORA_INICIO" ColumnName="HORA_INICIO" />
+          <ScalarProperty Name="ID_LOCACION" ColumnName="ID_LOCACION" />
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+          <ScalarProperty Name="ID_HORARIO" ColumnName="ID_HORARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOCACION">
+      <EntityTypeMapping TypeName="CLUBModel.LOCACION">
+        <MappingFragment StoreEntitySet="LOCACION">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ID_TIPO_ACTIVIDAD" ColumnName="ID_TIPO_ACTIVIDAD" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ID_LOCACION" ColumnName="ID_LOCACION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROFESOR">
+      <EntityTypeMapping TypeName="CLUBModel.PROFESOR">
+        <MappingFragment StoreEntitySet="PROFESOR">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="ID_PROFESOR" ColumnName="ID_PROFESOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOCIO">
+      <EntityTypeMapping TypeName="CLUBModel.SOCIO">
+        <MappingFragment StoreEntitySet="SOCIO">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="ID_SOCIO" ColumnName="ID_SOCIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CLUBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INSCRIPCION_SOCIO">
+      <EntityTypeMapping TypeName="CLUBModel.INSCRIPCION_SOCIO">
+        <MappingFragment StoreEntitySet="INSCRIPCION_SOCIO">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="FECHA_BAJA" ColumnName="FECHA_BAJA" />
+          <ScalarProperty Name="FECHA_INSCRIPCION" ColumnName="FECHA_INSCRIPCION" />
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+          <ScalarProperty Name="ID_SOCIO" ColumnName="ID_SOCIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="CLUBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="SV_ACTIVIDAD">
+      <EntityTypeMapping TypeName="CLUBModel.SV_ACTIVIDAD">
+        <MappingFragment StoreEntitySet="SV_ACTIVIDAD">
+          <ScalarProperty Name="ESTADO_PROFESOR" ColumnName="ESTADO_PROFESOR" />
+          <ScalarProperty Name="NOMBRE_COMPLETO" ColumnName="NOMBRE COMPLETO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ACTIVIDAD_DESCRIPCION" ColumnName="ACTIVIDAD DESCRIPCION" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_USER_INSCRIPCION" FunctionName="CLUBModel.Store.SP_GET_USER_INSCRIPCION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CLUBModel.SP_GET_USER_INSCRIPCION_Result">
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ACTIVIDAD_DESCRIPCION" ColumnName="ACTIVIDAD DESCRIPCION" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="NOMBRE_COMPLETO" ColumnName="NOMBRE COMPLETO" />
+          <ScalarProperty Name="ID_SOCIO" ColumnName="ID_SOCIO" />
+          <ScalarProperty Name="ID_ACTIVIDAD1" ColumnName="ID_ACTIVIDAD1" />
+          <ScalarProperty Name="FECHA_INSCRIPCION" ColumnName="FECHA_INSCRIPCION" />
+          <ScalarProperty Name="FECHA_BAJA" ColumnName="FECHA_BAJA" />
+          <ScalarProperty Name="ESTADO1" ColumnName="ESTADO1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_INSCRIPCION" FunctionName="CLUBModel.Store.SP_INSCRIPCION" />
+    <EntitySetMapping Name="SV_USER_INSCRIPCION">
+      <EntityTypeMapping TypeName="CLUBModel.SV_USER_INSCRIPCION">
+        <MappingFragment StoreEntitySet="SV_USER_INSCRIPCION">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ESTADO_SOCIO" ColumnName="ESTADO_SOCIO" />
+          <ScalarProperty Name="ESTADO_INSCRIPCION" ColumnName="ESTADO_INSCRIPCION" />
+          <ScalarProperty Name="ID_SOCIO" ColumnName="ID_SOCIO" />
+          <ScalarProperty Name="NOMBRE_COMPLETO" ColumnName="NOMBRE COMPLETO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ACTIVIDAD_DESCRIPCION" ColumnName="ACTIVIDAD DESCRIPCION" />
+          <ScalarProperty Name="ESTADO_ACTIVIDAD" ColumnName="ESTADO_ACTIVIDAD" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="ID_ACTIVIDAD" ColumnName="ID_ACTIVIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_INSCRIPCION_BAJA" FunctionName="CLUBModel.Store.SP_INSCRIPCION_BAJA" />
+  </EntityContainerMapping>
+</Mapping>

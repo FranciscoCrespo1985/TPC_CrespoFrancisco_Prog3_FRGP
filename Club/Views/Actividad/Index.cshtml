@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Club.Models.ACTIVIDAD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Edit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_INICIO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_FIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </th>
+        <th>
+            @Html.DisplayName("DESCRIPCION")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROFESOR)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_INICIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_FIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESTADO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROFESOR.APELLIDO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ACTIVIDAD }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_ACTIVIDAD }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ACTIVIDAD })
+        </td>
+    </tr>
+}
+
+</table>
