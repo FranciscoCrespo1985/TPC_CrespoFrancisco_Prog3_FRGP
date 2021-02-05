@@ -301,6 +301,7 @@
     <Content Include="Content\css\fullcalendar-bootstrap\main.min.css" />
     <Content Include="Content\css\fullcalendar-daygrid\main.min.css" />
     <Content Include="Content\css\fullcalendar-timegrid\main.min.css" />
+    <Content Include="Content\css\fullcalendar\main.css" />
     <Content Include="Content\css\fullcalendar\main.min.css" />
     <Content Include="Content\css\glyphicons.css" />
     <Content Include="Content\css\solid.css" />
@@ -355,6 +356,7 @@
     <Content Include="Scripts\calendar\fullcalendar-daygrid\main.min.js" />
     <Content Include="Scripts\calendar\fullcalendar-interaction\main.min.js" />
     <Content Include="Scripts\calendar\fullcalendar-timegrid\main.min.js" />
+    <Content Include="Scripts\calendar\main.js" />
     <Content Include="Scripts\calendar\main.min.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
