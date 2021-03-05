@@ -14,7 +14,7 @@ namespace Club.Controllers
         dbClub db = new dbClub();
         public ActionResult Index()
         {
-            var list = db.LOCACION;
+            var list = db.LOCACION.OrderBy(e=> e.DESCRIPCION);
             return View(list);
         }
 

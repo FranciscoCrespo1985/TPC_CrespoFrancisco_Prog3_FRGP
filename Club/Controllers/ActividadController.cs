@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace Club.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -16,7 +17,7 @@ namespace Club.Controllers
         dbClub db = new dbClub();
         public ActionResult Index()
         {
-            var list = db.ACTIVIDAD;
+            var list = db.ACTIVIDAD.OrderBy(e=>e.descripcion);
 
 
 

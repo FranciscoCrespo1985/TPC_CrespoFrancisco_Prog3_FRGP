@@ -9,39 +9,14 @@
 <content>
     <section class="content-header">
         <h2>Index</h2>
-
-
-
-        @*<div class="row">
-                <div class="col-md-12">
-                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-                 @Html.Grid(Model.lActividad).Named("Lista de Actividades").Columns(
-                 c =>
-                 {
-                     c.Add(x => x.FECHA_INICIO).Titled("Fecha Inicio").Filterable(true).Sortable(true);
-                     c.Add(x => x.FECHA_FIN).Titled("Fecha Fin").Filterable(true).Sortable(true);
-                     c.Add(x => x.DESCRIPCION).Titled("Descripcion").Filterable(true).Sortable(true);
-                     c.Add(x => x.NOMBRE_COMPLETO).Titled("Profesor").Filterable(true).Sortable(true);
-                     c.Add()
-                     .Encoded(false)
-                     .Sanitized(false)
-                     .SetWidth(30)
-                     .RenderValueAs(x => Html.ActionLink("Anotarse", "Edit", new { id = x.ID_ACTIVIDAD }, new { @class = "btn btn-primary" }));
-
-                     c.Add()
-                     .Encoded(false)
-                     .Sanitized(false)
-                     .SetWidth(30)
-                     .RenderValueAs(x => "<button class='btn btn-link' type='button' data-toggle='collapse' data-target='#AA_@(x.ID_ACTIVIDAD)' aria-expanded='true' aria-controls='#AA_@(x.ID_ACTIVIDAD)'>Horarios</button>");
-
-                     }).WithPaging(5).EmptyText("No data found")
-
-                </div>
-            </div>*@
-
-
-
-
+   
+    <p>
+        @using (Html.BeginForm("Index", "Inscripcion", FormMethod.Get))
+        {
+            <input type="text" name="search" placeholder="Escriba la clase deseada..." />
+            <input type="submit" name="submit" value="Search" />
+        }
+    </p>
 
 
         <table class="table">
@@ -107,10 +82,10 @@
                     </tr>
                 }
             }
-            
+
 
         </table>
-        @Html.PagedListPager(Model.pActividad,i =>Url.Action("Index","Inscripcion",new { i}))
+        @Html.PagedListPager(Model.pActividad, i => Url.Action("Index", "Inscripcion", new { i,seach=Request.QueryString["search"] }))
         <h2>Inscripto</h2>
         <table class="table">
             <tr>

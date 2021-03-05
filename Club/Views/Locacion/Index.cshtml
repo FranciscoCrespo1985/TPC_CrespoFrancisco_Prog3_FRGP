@@ -1,45 +1,54 @@
 ﻿@model IEnumerable<Club.Models.LOCACION>
-
+@using GridMvc.Html
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Edit")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DESCRIPCION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </th>
-        <th>
-            @Html.DisplayName("TIPO DE ACTIVIDAD")
-        </th>
-        <th></th>
-    </tr>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Locaciones</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DESCRIPCION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTADO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACTIVIDAD_TIPO.DESCRIPCION)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_LOCACION }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_LOCACION }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_LOCACION })
-        </td>
-    </tr>
-}
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"> Lista de Locaciones</h3>
+                            <div class="card-tools">@Html.ActionLink("Nuevo", "Edit", null, new { @class = "btn btn-block btn-success btn-xs" })</div>
+                        </div>
+                        @Html.Grid(Model).Named("Lista de Profesores").Columns(
+                        c =>
+                        {
+                            c.Add(x => x.DESCRIPCION).Titled("CANCHA").Filterable(true).Sortable(true);
+                            c.Add(x => x.ESTADO).Titled("ESTADO").Filterable(true).Sortable(true);
+                            c.Add(x => x.ACTIVIDAD_TIPO.DESCRIPCION).Titled("TIPO DE CANCHA").Filterable(true).Sortable(true);
+                          
+                            c.Add()
+                            .Encoded(false)
+                            .Sanitized(false)
+                            .SetWidth(30)
+                            .RenderValueAs(x => Html.ActionLink("Edit", "Edit", new { id = x.ID_LOCACION }, new { @class = "btn btn-primary" }));
+                           
 
-</table>
+                             }).WithPaging(5).EmptyText("No data found")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+

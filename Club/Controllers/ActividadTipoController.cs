@@ -18,7 +18,7 @@ namespace Club.Controllers
         
         public ActionResult Index()
         {
-            var list = db.ACTIVIDAD_TIPO ;
+            var list = db.ACTIVIDAD_TIPO.OrderBy(x=> x.DESCRIPCION) ;
             
             return View(list);
         }
@@ -42,6 +42,44 @@ namespace Club.Controllers
             
             return View();
         }
+        public ActionResult Edit(int? id)
+        {
 
+           
+            var actividad_tipo_vm = new ACTIVIDAD_TIPO_VM();
+            var actividad_tipo = db.ACTIVIDAD_TIPO.Find(id);
+            
+
+            if (actividad_tipo != null)
+            {
+                actividad_tipo_vm.ID_ACTIVIDAD_TIPO = actividad_tipo.ID_ACTIVIDAD_TIPO;
+                actividad_tipo_vm.DESCRIPCION = actividad_tipo.DESCRIPCION;
+            }
+
+            return View(actividad_tipo_vm);
+        }
+        [HttpPost]
+        public ActionResult Edit(ACTIVIDAD_TIPO_VM model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var tipo = db.ACTIVIDAD_TIPO.Find(model.ID_ACTIVIDAD_TIPO);
+                if (tipo == null)
+                {
+                    tipo = new ACTIVIDAD_TIPO();
+                    db.ACTIVIDAD_TIPO.Add(tipo);
+                }
+                   
+                tipo.DESCRIPCION = model.DESCRIPCION;
+
+
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+
+
+        }
     }
 }

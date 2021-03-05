@@ -112,3 +112,8 @@ C:\Users\Paco-PC\source\repos\Club\Club\obj\Debug\Club.Migrations.role3.resource
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.ComponentModel.Annotations.dll
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Debug\Club.csprojAssemblyReference.cache
 C:\Users\Paco-PC\source\repos\Club\Club\bin\BeginCollectionItem.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\GridMvc.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.xml
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.xml

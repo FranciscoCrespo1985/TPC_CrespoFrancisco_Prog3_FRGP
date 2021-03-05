@@ -14,13 +14,10 @@ namespace Club.Controllers
     public class InscripcionController : Controller
     {
 
-
-
-
         // GET: Inscripcion
         dbClub db = new dbClub();
         
-        public ActionResult Index(int? i )
+        public ActionResult Index(int? i,string search ="")
         {
 
 
@@ -94,7 +91,10 @@ namespace Club.Controllers
                     vm_actividad_insciopcion_2.lIncripto.Add(vm_actividad_incripcion);
                 }
             }
-            vm_actividad_insciopcion_2.pActividad = vm_actividad_insciopcion_2.lActividad.ToPagedList(i ?? 1, 3);
+
+           
+            vm_actividad_insciopcion_2.pActividad = vm_actividad_insciopcion_2.lActividad.Where(x=> x.DESCRIPCION.StartsWith(search) || search == null).ToPagedList(i ?? 1, 3);
+            
             vm_actividad_insciopcion_2.pInscripto = vm_actividad_insciopcion_2.lIncripto.ToPagedList(i ?? 1, 3);
             return View(vm_actividad_insciopcion_2);
         }

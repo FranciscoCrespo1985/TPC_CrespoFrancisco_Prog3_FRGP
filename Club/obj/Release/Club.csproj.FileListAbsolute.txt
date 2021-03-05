@@ -54,6 +54,7 @@ C:\Users\Paco-PC\source\repos\Club\Club\bin\Antlr3.Runtime.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\BeginCollectionItem.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\EntityFramework.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\EntityFramework.SqlServer.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\GridMvc.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -70,6 +71,8 @@ C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Newtonsoft.Json.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Owin.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.ComponentModel.Annotations.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.Web.Helpers.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.Web.Mvc.dll
@@ -82,6 +85,8 @@ C:\Users\Paco-PC\source\repos\Club\Club\bin\WebGrease.dll
 C:\Users\Paco-PC\source\repos\Club\Club\bin\EntityFramework.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\EntityFramework.SqlServer.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Newtonsoft.Json.xml
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.xml
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.Web.Helpers.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.Web.Mvc.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\System.Web.Optimization.xml
@@ -103,7 +108,6 @@ C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Paco-PC\source\repos\Club\Club\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.csprojAssemblyReference.cache
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.Migrations.InitialCreate.resources
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.Migrations.role.resources
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.Migrations.role3.resources
@@ -112,8 +116,3 @@ C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.csproj.CoreCompileInput
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.csproj.CopyComplete
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.dll
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.pdb
-C:\Users\Paco-PC\source\repos\Club\Club\bin\GridMvc.dll
-C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.dll
-C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.dll
-C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.xml
-C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.xml

@@ -6,19 +6,15 @@ using System.Web;
 
 namespace Club.Models
 {
-    [MetadataType(typeof(ACTIVIDAD_TIPO_METADATA))]
-    public partial class ACTIVIDAD_TIPO
-    {
+    
 
-    }
-
-    public class ACTIVIDAD_TIPO_METADATA 
+    public class ACTIVIDAD_TIPO_VM
     {
-        [ScaffoldColumn(false)]
-        public object ID_ACTIVIDAD_TIPO { get; set; }
+      
+        public int ID_ACTIVIDAD_TIPO { get; set; }
         [Required]
         [StringLength(50,ErrorMessage ="Como maxima {0} y minimo{2}",MinimumLength = 2)]
-        public object DESCRIPCION { get; set; }
+        public string DESCRIPCION { get; set; }
 
     }
 

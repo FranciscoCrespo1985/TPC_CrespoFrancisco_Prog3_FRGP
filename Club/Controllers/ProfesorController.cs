@@ -16,7 +16,7 @@ namespace Club.Controllers
         dbClub db = new dbClub();
         public ActionResult Index()
         {
-            var list = db.PROFESOR;
+            var list = db.PROFESOR.OrderBy(x=>x.APELLIDO);
             return View(list);
         }
 

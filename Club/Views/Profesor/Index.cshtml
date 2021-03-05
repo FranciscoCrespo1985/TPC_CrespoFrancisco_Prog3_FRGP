@@ -1,63 +1,53 @@
 ﻿@model IEnumerable<Club.Models.PROFESOR>
-
+@using GridMvc.Html
 @{
     ViewBag.Title = "Index";
 }
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Profesores</h1>
+                </div>                
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Edit")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DNI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.APELLIDO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TELEFONO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EMAIL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ESTADO)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DNI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.APELLIDO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TELEFONO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EMAIL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ESTADO)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PROFESOR }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_PROFESOR }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PROFESOR })
-        </td>
-    </tr>
-}
 
-</table>
+<section class="content">
+    <div class="container-fluid">
+        <div class ="card">
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"> Lista de Profesores</h3>
+                                <div class="card-tools">@Html.ActionLink("Nuevo", "Edit", null, new { @class ="btn btn-block btn-success btn-xs" })</div>
+                            </div>
+                            @Html.Grid(Model).Named("Lista de Profesores").Columns(
+                            c =>
+                            {
+                                c.Add(x => x.DNI).Titled("DNI").Filterable(true).Sortable(true);
+                                c.Add(x => x.NOMBRE).Titled("NOMBRE").Filterable(true).Sortable(true);
+                                c.Add(x => x.APELLIDO).Titled("APELLIDO").Filterable(true).Sortable(true);
+                                c.Add(x => x.TELEFONO).Titled("TELEFONO").Filterable(true).Sortable(true);
+                                c.Add(x => x.EMAIL).Titled("EMAIL").Filterable(true).Sortable(true);
+                                c.Add(x => x.ESTADO).Titled("ESTADO").Filterable(true).Sortable(true);
+                                c.Add()
+                                .Encoded(false)
+                                .Sanitized(false)
+                                .SetWidth(30)
+                                .RenderValueAs(x => Html.ActionLink("Edit", "Edit", new { id = x.ID_PROFESOR }, new { @class = "btn btn-primary" }));
+                                
+
+                                 }).WithPaging(5).EmptyText("No data found")
+                        </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+</section>
+
