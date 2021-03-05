@@ -1,5 +1,7 @@
 ﻿@model Club.Models.VM_ACTIVIDAD_INSCRIPCION_2
-
+@using GridMvc.Html
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Index";
 }
@@ -7,6 +9,40 @@
 <content>
     <section class="content-header">
         <h2>Index</h2>
+
+
+
+        @*<div class="row">
+                <div class="col-md-12">
+                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                 @Html.Grid(Model.lActividad).Named("Lista de Actividades").Columns(
+                 c =>
+                 {
+                     c.Add(x => x.FECHA_INICIO).Titled("Fecha Inicio").Filterable(true).Sortable(true);
+                     c.Add(x => x.FECHA_FIN).Titled("Fecha Fin").Filterable(true).Sortable(true);
+                     c.Add(x => x.DESCRIPCION).Titled("Descripcion").Filterable(true).Sortable(true);
+                     c.Add(x => x.NOMBRE_COMPLETO).Titled("Profesor").Filterable(true).Sortable(true);
+                     c.Add()
+                     .Encoded(false)
+                     .Sanitized(false)
+                     .SetWidth(30)
+                     .RenderValueAs(x => Html.ActionLink("Anotarse", "Edit", new { id = x.ID_ACTIVIDAD }, new { @class = "btn btn-primary" }));
+
+                     c.Add()
+                     .Encoded(false)
+                     .Sanitized(false)
+                     .SetWidth(30)
+                     .RenderValueAs(x => "<button class='btn btn-link' type='button' data-toggle='collapse' data-target='#AA_@(x.ID_ACTIVIDAD)' aria-expanded='true' aria-controls='#AA_@(x.ID_ACTIVIDAD)'>Horarios</button>");
+
+                     }).WithPaging(5).EmptyText("No data found")
+
+                </div>
+            </div>*@
+
+
+
+
+
 
         <table class="table">
             <tr>
@@ -27,7 +63,7 @@
                 <th></th>
             </tr>
 
-            @foreach (var item in Model.lActividad)
+            @foreach (var item in Model.pActividad)
             {
                 <tr>
                     <td>
@@ -71,9 +107,10 @@
                     </tr>
                 }
             }
-
+            
 
         </table>
+        @Html.PagedListPager(Model.pActividad,i =>Url.Action("Index","Inscripcion",new { i}))
         <h2>Inscripto</h2>
         <table class="table">
             <tr>
@@ -138,11 +175,6 @@
                     </tr>
                 }
             }
-
-
-
-
-
         </table>
 
     </section>
@@ -244,14 +276,32 @@
 </content>
 @section Scripts {
     <script>
-       
+
         // Get Wednesdays between 15 December, 2016 and 25 February, 2017.
-       
+
+        $(
 
 
 
-
-        $(function () {
+            function () {
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
             function getDaysBetweenDates(start, end, dayName) {
                 var result = [];
                 var days = { dom: 0, lun: 1, mar: 2, mie: 3, jue: 4, vie: 5, sab: 6 };
@@ -268,7 +318,7 @@
                 return result;
             }
 
-           
+
 
 
             /* initialize the calendar
@@ -318,13 +368,13 @@
                           fechaFin = e.FECHA_FIN
                           })));
 
-            
+
 
             // todo serializar o deserializar
             console.log(data[0].title + data[0].lHorario[0].HORA_INICIO + data[0].lHorario[0].HORA_FIN);
             console.log("aca "+new Date(parseInt(data[0].lHorario[0].HORA_INICIO.substr(6))).getHours());
 
-           
+
 
 
             console.log(getDaysBetweenDates(
@@ -335,7 +385,9 @@
             console.log("este"+new Date(2016, 11, 15));
             var fechas = [];
             var periodo = {fechaS :new Date(), fechaE : new Date()};
-            var evento = [];        
+            var evento = [];
+
+
             for (var i of data)
             {
                 periodo = { fechaS: new Date(parseInt(i.fechaInicio.substr(6))), fechaE: new Date(parseInt(i.fechaFin.substr(6))) }
@@ -370,6 +422,8 @@
                     }
 
                     console.log(fechas);
+
+                    //// Ejemplo de objeto evento
                     //evento.push(
                     //title: 'Lunch',
                     //start: new Date(y, m, d, 12, 0),
@@ -381,69 +435,7 @@
                 }
             }
 
-
-         
-
-               /* {
-                    title: data[0].title,
-                    start: new Date(y, m, 1),
-                    backgroundColor: '#f56954', //red
-                    borderColor: '#f56954', //red
-                    allDay: true
-                },
-                {
-                    title: 'Long Event',
-                    start: new Date(y, m, d - 5),
-                    end: new Date(y, m, d - 2),
-                    backgroundColor: '#f39c12', //yellow
-                    borderColor: '#f39c12' //yellow
-                },
-                {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 10, 30),
-                    allDay: false,
-                    backgroundColor: '#0073b7', //Blue
-                    borderColor: '#0073b7' //Blue
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false,
-                    backgroundColor: '#00c0ef', //Info (aqua)
-                    borderColor: '#00c0ef' //Info (aqua)
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d + 1, 19, 0),
-                    end: new Date(y, m, d + 1, 22, 30),
-                    allDay: false,
-                    backgroundColor: '#00a65a', //Success (green)
-                    borderColor: '#00a65a' //Success (green)
-                },
-                {
-                    title: 'Click for Google',
-                    start: new Date(y, m, 28),
-                    end: new Date(y, m),
-                    url: 'http://google.com/',
-                    backgroundColor: '#3c8dbc', //Primary (light-blue)
-                    borderColor: '#3c8dbc' //Primary (light-blue)
-                }
-            ];*/
-
-
-                evento.push(
-                {
-                title: ' paco Google',
-                    start: new Date(y, 11, 19),
-                    end: new Date(y, m),
-                    url: 'http://google.com/',
-                    backgroundColor: '#3c8dbc', //Primary (light-blue)
-                    borderColor: '#3c8dbc' //Primary (light-blue)
-                }
-            );
-
-                calendar.addEventSource(evento),
+            calendar.addEventSource(evento),
 
             calendar.render();
             })

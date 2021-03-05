@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Club.Models;
+using PagedList.Mvc;
+using PagedList;
 using Microsoft.AspNet.Identity;
 namespace Club.Controllers
 {
@@ -18,7 +20,7 @@ namespace Club.Controllers
         // GET: Inscripcion
         dbClub db = new dbClub();
         
-        public ActionResult Index()
+        public ActionResult Index(int? i )
         {
 
 
@@ -92,7 +94,8 @@ namespace Club.Controllers
                     vm_actividad_insciopcion_2.lIncripto.Add(vm_actividad_incripcion);
                 }
             }
-            
+            vm_actividad_insciopcion_2.pActividad = vm_actividad_insciopcion_2.lActividad.ToPagedList(i ?? 1, 3);
+            vm_actividad_insciopcion_2.pInscripto = vm_actividad_insciopcion_2.lIncripto.ToPagedList(i ?? 1, 3);
             return View(vm_actividad_insciopcion_2);
         }
 

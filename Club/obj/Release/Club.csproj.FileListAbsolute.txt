@@ -112,3 +112,8 @@ C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.csproj.CoreCompileInput
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.csproj.CopyComplete
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.dll
 C:\Users\Paco-PC\source\repos\Club\Club\obj\Release\Club.pdb
+C:\Users\Paco-PC\source\repos\Club\Club\bin\GridMvc.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.dll
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.xml
+C:\Users\Paco-PC\source\repos\Club\Club\bin\PagedList.Mvc.xml

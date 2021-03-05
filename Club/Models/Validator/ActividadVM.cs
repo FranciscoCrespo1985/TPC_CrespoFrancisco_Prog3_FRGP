@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using PagedList.Mvc;
+using PagedList;
 namespace Club.Models
 {
     public class ActividadVM 
@@ -60,6 +62,12 @@ namespace Club.Models
     {
         public List<VM_ACTIVIDAD_INSCRIPCION> lActividad { get; set; }
         public List<VM_ACTIVIDAD_INSCRIPCION> lIncripto { get; set; }
+
+        public IPagedList<VM_ACTIVIDAD_INSCRIPCION> pActividad { get; set; }
+        public IPagedList<VM_ACTIVIDAD_INSCRIPCION> pInscripto { get; set; }
+
     }
+
+   
 
 }
