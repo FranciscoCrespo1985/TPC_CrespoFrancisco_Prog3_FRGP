@@ -291,6 +291,7 @@
       <DependentUpon>dbClub.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Validator\Actividad_TipoVM.cs" />
+    <Compile Include="Models\Validator\sociosInscriptosVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -633,6 +634,7 @@
     <Content Include="Views\Inscripcion\Index.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\Actividad\sociosIncriptos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

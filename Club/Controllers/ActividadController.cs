@@ -1,4 +1,5 @@
 ﻿using Club.Models;
+using Club.Models.Validator;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,10 +20,22 @@ namespace Club.Controllers
         {
             var list = db.ACTIVIDAD.OrderBy(e=>e.descripcion);
 
+            var listActividadVM = new List<ActividadVM>();
+            foreach(var item in list) 
+            {
+                var actividadVM = new ActividadVM();
+                actividadVM.ID_ACTIVIDAD = item.ID_ACTIVIDAD;
+                actividadVM.profesor = item.PROFESOR.APELLIDO;
+                actividadVM.ID_ACTIVIDAD_TIPO = item.ID_ACTIVIDAD_TIPO;
+                actividadVM.FECHA_INICIO = item.FECHA_INICIO;
+                actividadVM.FECHA_FIN = item.FECHA_FIN;
+                actividadVM.ESTADO = item.ESTADO;
+                actividadVM.descripcion = item.descripcion;
+                actividadVM.cantInscripto = db.INSCRIPCION_SOCIO.Where(e => e.ID_ACTIVIDAD == item.ID_ACTIVIDAD &&  e.ESTADO == true).Count();
+                listActividadVM.Add(actividadVM);
+            }
 
-
-
-            return View(list);
+            return View(listActividadVM.OrderBy(e => e.descripcion));
         }
 
         // GET: Actividad/Details/5
@@ -56,7 +69,7 @@ namespace Club.Controllers
                 actividadVM.ID_ACTIVIDAD = actividad.ID_ACTIVIDAD;
                 actividadVM.ID_PROFESOR = actividad.ID_PROFESOR;
                 actividadVM.ID_ACTIVIDAD_TIPO = actividad.ID_ACTIVIDAD_TIPO;
-                actividadVM.DESCRIPCION = actividad.descripcion;
+                actividadVM.descripcion = actividad.descripcion;
                 foreach (var horario in db.HORARIO.Where(e => e.ID_ACTIVIDAD == id))
                 {
                     horarioVM = new HorarioVM();
@@ -71,9 +84,33 @@ namespace Club.Controllers
                 }
 
             }
-
             return View(actividadVM);
+        }
 
+        public ActionResult sociosIncriptos (int id)
+        {
+            var inscriptos = db.INSCRIPCION_SOCIO.Where(e => e.ID_ACTIVIDAD == id && e.ESTADO == true).Select(e=> e.ID_SOCIO);
+            var socio = db.SOCIO.Where(e => inscriptos.Contains(e.ID_SOCIO) && e.ESTADO == true);
+            var count = socio.Count();
+            List<sociosInscriptosVM> sociosInscriptosVMs= new List<sociosInscriptosVM>();
+            foreach (var item in socio)
+            {
+                var sociosInscriptosVM = new sociosInscriptosVM();
+                var asp = db.AspNetUsers.Find(item.ID_SOCIO);
+                //var inscripcion = db.INSCRIPCION_SOCIO.Where(e => e.ID_ACTIVIDAD == id && e.ID_SOCIO == item.ID_SOCIO && e.ESTADO == true).First();
+                sociosInscriptosVM.DNI = item.DNI;
+                sociosInscriptosVM.nombre = item.NOMBRE;
+                sociosInscriptosVM.apellido = item.APELLIDO;
+                sociosInscriptosVM.idSocio = item.ID_SOCIO;
+                sociosInscriptosVM.Email = asp.Email;
+                sociosInscriptosVM.telefono = asp.PhoneNumber;
+                sociosInscriptosVM.estado = item.ESTADO;
+                sociosInscriptosVM.idActividad = id;
+                sociosInscriptosVMs.Add(sociosInscriptosVM);
+            }
+
+
+            return View(sociosInscriptosVMs.OrderBy(e=> e.apellido));        
         }
 
 
@@ -96,7 +133,7 @@ namespace Club.Controllers
                 actividad.FECHA_INICIO = model.FECHA_INICIO;
                 actividad.ID_PROFESOR = model.ID_PROFESOR;
                 actividad.ID_ACTIVIDAD_TIPO = model.ID_ACTIVIDAD_TIPO;                
-                actividad.descripcion = model.DESCRIPCION;
+                actividad.descripcion = model.descripcion;
 
 
                 db.SaveChanges();

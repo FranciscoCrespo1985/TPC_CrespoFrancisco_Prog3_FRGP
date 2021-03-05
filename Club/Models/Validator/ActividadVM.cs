@@ -14,15 +14,15 @@ namespace Club.Models
     {
         public int ID_ACTIVIDAD { get; set; }
         public long ID_PROFESOR { get; set; }
-        
 
-
+        public int cantInscripto { get; set; }
+        public string profesor { get; set; }
 
         public int ID_ACTIVIDAD_TIPO { get; set; }
         [Required]
         [StringLength(40, ErrorMessage = "El {0} debe ser al menos {2} characters long", MinimumLength = 2)]
         [Display(Name = "Descripcion")]
-        public string DESCRIPCION { get; set; }
+        public string descripcion { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

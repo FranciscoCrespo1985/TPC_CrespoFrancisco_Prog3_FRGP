@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Club.Models.Validator.sociosInscriptosVM>
+@{
+    ViewBag.Title = "sociosIncriptos";
+}
+@using GridMvc.Html
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Inscriptos a actividad</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"> Lista de Actividades</h3>
+                        </div>
+                        @Html.Grid(Model).Named("Lista de Actividades").Columns(
+                    c =>
+                    {
+                        c.Add(x => x.DNI).Titled("DNI").Filterable(true).Sortable(true);
+                        c.Add(x => x.nombre).Titled("NOMBRE").Filterable(true).Sortable(true);
+                        c.Add(x => x.apellido).Titled("APELLIDO").Filterable(true).Sortable(true);
+                        c.Add(x => x.Email).Titled("Email").Filterable(true).Sortable(true);
+                        c.Add(x => x.telefono).Titled("TELEFONO").Filterable(true).Sortable(true);
+
+                        c.Add()
+                        .Encoded(false)
+                        .Sanitized(false)
+                        .SetWidth(30)
+                        .RenderValueAs(x => Html.ActionLink("Edit", "Edit", new { id_ACTIVIDAD = x.idActividad, id_socio = x.idSocio }, new { @class = "btn btn-primary" }));
+
+
+
+                         }).WithPaging(5).EmptyText("No data found")
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <input type="submit" value="Save" class="btn btn-default" />
+
+                            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
